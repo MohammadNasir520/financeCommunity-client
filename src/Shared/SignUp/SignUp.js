@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
 const SignUp = () => {
+
+
     //imagebb key
     const imageBBHostKey = process.env.REACT_APP_ImageBBhost_key;
     console.log(imageBBHostKey)
@@ -99,7 +101,7 @@ const SignUp = () => {
                                     <label className="label">
                                         <span className="label-text">Your Photo</span>
                                     </label>
-                                    <input name='file' type="file" required className=' bg-white' onChange={handleImage} />
+                                    <input name='file' type="file" required className=' bg-white w-full' onChange={handleImage} />
                                 </div>
 
                                 <div>
