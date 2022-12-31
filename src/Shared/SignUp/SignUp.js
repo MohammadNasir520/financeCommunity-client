@@ -29,7 +29,7 @@ const SignUp = () => {
 
         const formData = new FormData()
         formData.append("image", image)
-        const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageBBHostKey}`
+        const url = `https://api.imgbb.com/1/upload?key=${imageBBHostKey}`
         fetch(url, {
             method: 'POST',
             body: formData
@@ -40,32 +40,33 @@ const SignUp = () => {
 
                     setImageUrl(imgData.data.url)
                     console.log(imgData.data.url)
+                    const student = {
+                        name,
+                        email,
+                        batch,
+                        imageUrl,
+                        password,
+                    }
+                    fetch(`http://localhost:5000/students`, {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(student)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data)
+                            if (data.acknowledged) {
+                                form.reset()
+                            }
+                        })
                 }
             })
         console.log(email, batch, password, image)
 
 
-        const student = {
-            name,
-            email,
-            batch,
-            imageUrl,
-            password,
-        }
-        fetch(`http://localhost:5000/students`, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(student)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                if (data.acknowledged) {
-                    form.reset()
-                }
-            })
+
     }
     return (
         <div>
@@ -85,7 +86,7 @@ const SignUp = () => {
                                     <label className="label">
                                         <span className="label-text">Your Official Name</span>
                                     </label>
-                                    <input name='Name' type="text" placeholder="Enter Your Name" required className='px-4' />
+                                    <input name='name' type="text" placeholder="Enter Your Name" required className='px-4' />
                                 </div>
 
 
