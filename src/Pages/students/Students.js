@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { fetchStudents } from '../../app/features/Students/studentSlice';
 
 const Students = () => {
     const dispatch = useDispatch()
-
+    const location = useLocation()
+    console.log(location.state)
 
     useEffect(() => {
         dispatch(fetchStudents())

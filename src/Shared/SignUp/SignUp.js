@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../../Context/AuthProvider';
 
 const SignUp = () => {
 
+    const { createUserbyEmail } = useContext(AuthContext)
 
-    //imagebb key
+    //imagebb key collect from env.local
     const imageBBHostKey = process.env.REACT_APP_ImageBBhost_key;
     console.log(imageBBHostKey)
 
@@ -13,9 +15,7 @@ const SignUp = () => {
         setImage(event.target.files)
     }
 
-    // Image url
-    const [imageUrl, setImageUrl] = useState('')
-    console.log(imageUrl)
+
     const handleSignUp = event => {
         event.preventDefault();
 
@@ -27,6 +27,8 @@ const SignUp = () => {
 
         const image = stateImage[0]
 
+
+        // imageBB form data and image append and post to imagebb
         const formData = new FormData()
         formData.append("image", image)
         const url = `https://api.imgbb.com/1/upload?key=${imageBBHostKey}`
@@ -38,16 +40,17 @@ const SignUp = () => {
             .then(imgData => {
                 if (imgData.success) {
 
-                    setImageUrl(imgData.data.url)
-                    console.log(imgData.data.url)
+
+                    //user post to mongodb
                     const student = {
                         name,
                         email,
                         batch,
-                        imageUrl,
+                        imageUrl: imgData.data.url,
                         password,
                     }
-                    fetch(`http://localhost:5000/students`, {
+                    console.log(student)
+                    fetch(`https://finance-community-server.vercel.app/students`, {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'
@@ -58,13 +61,23 @@ const SignUp = () => {
                         .then(data => {
                             console.log(data)
                             if (data.acknowledged) {
+                                createUserbyEmail(email, password)
+                                    .then(result => {
+                                        const user = result.user;
+                                        console.log(user)
+                                    })
+                                    .catch(error => {
+                                        console.log(error)
+                                    })
                                 form.reset()
                             }
                         })
+
+
                 }
+
             })
         console.log(email, batch, password, image)
-
 
 
     }

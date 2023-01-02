@@ -1,14 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider';
 
 const NavBar = () => {
-
+    const { logOut, user } = useContext(AuthContext)
+    console.log(user);
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .then(error => {
+                console.log(error)
+            })
+    }
     const navMenuItems = <React.Fragment>
         <li> <NavLink to={'/home'}>Homepage</NavLink> </li>
         {/* <li> <NavLink to={'/'}>Portfolio</NavLink> </li> */}
         <li> <NavLink to={'/about'}>About</NavLink> </li>
-        <li> <NavLink to={'/login'}>Login</NavLink> </li>
-        <li> <NavLink to={'/SignUp'}> SignUp</NavLink> </li>
+
+        {
+            user ? <li > <Link to="/login" onClick={handleLogOut}> SignOut</Link></li>
+                :
+                <>
+                    <li> <NavLink to={'/login'}>Login</NavLink> </li>
+                    <li> <NavLink to={'/SignUp'}> SignUp</NavLink> </li>
+                </>
+        }
+
+
     </React.Fragment>
     return (
         <div className="navbar bg-base-100">

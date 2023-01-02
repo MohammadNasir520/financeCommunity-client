@@ -5,23 +5,26 @@ import Batch from './Batch';
 
 const Batches = () => {
 
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
 
 
-    useEffect(() => {
-        dispatch(fetchStudents())
+    // useEffect(() => {
+    //     dispatch(fetchStudents())
 
-    }, [dispatch])
+    // }, [dispatch])
 
-    const { students } = useSelector((state) => state)
-    console.log("students", students.students)
+    // const { students } = useSelector((state) => state)
+    // console.log("students", students.students)
+
+    const batch = [2020, 2019, 2018, 2017, 2016]
+
     return (
 
         <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-4'>
 
             {
-                students.students.map(student => <Batch
-                    student={student}
+                batch.map(batch => <Batch
+                    batch={batch}
                 ></Batch>)
             }
         </div>
