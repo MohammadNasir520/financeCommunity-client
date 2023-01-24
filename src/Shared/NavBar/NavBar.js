@@ -13,9 +13,10 @@ const NavBar = () => {
             })
     }
     const navMenuItems = <React.Fragment>
-        <li> <NavLink to={'/home'}>Homepage</NavLink> </li>
+        <li> <NavLink to={'/home'}>Home</NavLink> </li>
         {/* <li> <NavLink to={'/'}>Portfolio</NavLink> </li> */}
-        <li> <NavLink to={'/about'}>About</NavLink> </li>
+        {/* <li> <NavLink to={'/about'}>About</NavLink> </li> */}
+        <li> <NavLink to={'/register'}>Register</NavLink> </li>
 
         {
             user ? <li > <Link to="/login" onClick={handleLogOut}> SignOut</Link></li>

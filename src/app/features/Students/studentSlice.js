@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchStudents = createAsyncThunk("posts/fetchUsers", async () => {
-    const students = await fetch(`https://finance-community-server.vercel.app/students`)
+    const students = await fetch(`http://localhost:5000/students`)
     const res = await students.json()
     return res;
 })

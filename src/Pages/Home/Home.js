@@ -6,7 +6,7 @@ const Home = () => {
     const batch = useSelector((state) => state.setBatch.batch)
     console.log(batch)
     return (
-        <div className='mx-auto'>
+        <div className='mx-auto min-h-screen mx-10 my-10'>
             <Batches></Batches>
         </div>
     );
