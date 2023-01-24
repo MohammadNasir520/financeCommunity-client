@@ -11,9 +11,10 @@ const Register = () => {
     const email = user?.email;
     console.log(email);
 
-    const [studentInformation, setStudentInformation] = useState({})
+    const [studentInformation, setStudentInformation] = useState({ role: "requested", email })
     console.log(studentInformation);
 
+    const [student, setStudent] = useState({})
     useEffect(() => {
         getSingleStudentByEmail(user?.email)
             .then(data => {
@@ -71,7 +72,7 @@ const Register = () => {
                             <label className="text-white dark:text-gray-200" for="emailAddress">Your Email</label>
                             <input
                                 readOnly
-                                defaultValue={user?.email}
+                                defaultValue={studentInformation?.email}
                                 onSubmit={(event) => setStudentInformation({ ...studentInformation, email: event.target.value })}
                                 id="email" type="email" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                         </div>
@@ -79,6 +80,7 @@ const Register = () => {
                         <div>
                             <label className="text-white dark:text-gray-200" for="number">Your Student Id Number</label>
                             <input
+                                defaultValue={studentInformation?.studentId}
                                 onChange={(event) => setStudentInformation({ ...studentInformation, studentId: event.target.value })}
                                 id="number" type="number" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                         </div>
@@ -86,12 +88,14 @@ const Register = () => {
                         <div>
                             <label className="text-white dark:text-gray-200" for="district">Your Home District</label>
                             <input
+                                defaultValue={studentInformation?.district}
                                 onChange={(event) => setStudentInformation({ ...studentInformation, district: event.target.value })}
                                 id="district" type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                         </div>
                         <div>
                             <label className="text-white dark:text-gray-200" for="address">Present Address</label>
                             <input
+                                defaultValue={studentInformation?.address}
                                 onChange={(event) => setStudentInformation({ ...studentInformation, address: event.target.value })}
                                 id="address" type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                         </div>
@@ -99,8 +103,11 @@ const Register = () => {
                             <div className='w-40'>
                                 <label className="text-white  dark:text-gray-200" for="">Your Current Level</label>
                                 <select
+                                    required
+                                    defaultValue={studentInformation?.level}
                                     onChange={(event) => setStudentInformation({ ...studentInformation, level: event.target.value })}
                                     className="w-40   text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                                    <option disabled selected> {studentInformation?.level}</option>
                                     <option>Level 1</option>
                                     <option>Level 2</option>
                                     <option>Level 3</option>
@@ -120,8 +127,10 @@ const Register = () => {
 
                         </div>
                         <div>
+
                             <label className="text-white dark:text-gray-200" for="skill">Your Strength Point (skill)</label>
                             <input
+                                defaultValue={studentInformation?.skill}
                                 onChange={(event) => setStudentInformation({ ...studentInformation, skill: event.target.value })}
                                 id="" type="text" className="block w-full py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                         </div>
@@ -136,18 +145,21 @@ const Register = () => {
                         <div>
                             <label className="text-white dark:text-gray-200" for="hobby">hobby</label>
                             <input
+                                defaultValue={studentInformation?.hobby}
                                 onChange={(event) => setStudentInformation({ ...studentInformation, hobby: event.target.value })}
                                 id="hobby" type="text" className="block w-full py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                         </div>
                         <div>
                             <label className="text-white dark:text-gray-200" for="">Your Collage</label>
                             <input
+                                defaultValue={studentInformation?.collage}
                                 onChange={(event) => setStudentInformation({ ...studentInformation, collage: event.target.value })}
                                 id="collage" type="text" className="block w-full py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                         </div>
                         <div>
                             <label className="text-white dark:text-gray-200" for="">Write about yourself</label>
                             <textarea
+                                defaultValue={studentInformation?.about}
                                 onChange={(event) => setStudentInformation({ ...studentInformation, about: event.target.value })}
                                 id="about" type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"></textarea>
                         </div>

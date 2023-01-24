@@ -8,6 +8,7 @@ export const getAllStudents = async () => {
 
 // get single student by email
 export const getSingleStudentByEmail = async (email) => {
+    console.log(email);
     const response = await fetch(`http://localhost:5000/student/${email}`)
     const data = await response.json();
     return data;
@@ -18,8 +19,11 @@ export const getSingleStudentByEmail = async (email) => {
 export const registrationRequest = async studentInformation => {
 
     const email = studentInformation.email;
+
+
     delete studentInformation.email;
     delete studentInformation._id;
+    const studentInformations = { ...studentInformation, role: 'requested' }
     console.log(studentInformation);
     const url = `${process.env.REACT_APP_Base_url}/student/${email}`
     const response = await fetch(url, {
@@ -27,7 +31,7 @@ export const registrationRequest = async studentInformation => {
         headers: {
             'content-type': 'application/json'
         },
-        body: JSON.stringify(studentInformation)
+        body: JSON.stringify(studentInformations)
     })
     const data = await response.json()
     return data;
