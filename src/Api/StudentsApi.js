@@ -1,4 +1,5 @@
 
+
 // get all students
 export const getAllStudents = async () => {
     const response = await fetch(`http://localhost:5000/students`)
@@ -35,4 +36,13 @@ export const registrationRequest = async studentInformation => {
     })
     const data = await response.json()
     return data;
+}
+
+
+// get role
+export const getStudentRole = async (email) => {
+    console.log(email);
+    const response = await fetch(`http://localhost:5000/student/${email}`)
+    const data = await response.json();
+    return data.role;
 }

@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from "firebase/auth";
 import app from '../Firebase/Firebase.config';
 import { current } from 'daisyui/src/colors';
 
@@ -28,6 +28,12 @@ const AuthProvider = ({ children }) => {
         return () => unsubscribe();
     }, [])
 
+
+    // updateUserProfile
+    const updateUser = profile => {
+        return updateProfile(auth.currentUser, profile)
+    }
+
     // logout
     const logOut = () => {
         return signOut(auth)
@@ -36,6 +42,7 @@ const AuthProvider = ({ children }) => {
         createUserbyEmail,
         loginByEmail,
         user,
+        updateUser,
         logOut,
 
     }

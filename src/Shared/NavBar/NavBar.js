@@ -14,9 +14,9 @@ const NavBar = () => {
     }
     const navMenuItems = <React.Fragment>
         <li> <NavLink to={'/home'}>Home</NavLink> </li>
-        {/* <li> <NavLink to={'/'}>Portfolio</NavLink> </li> */}
-        {/* <li> <NavLink to={'/about'}>About</NavLink> </li> */}
-        <li> <NavLink to={'/register'}>Register</NavLink> </li>
+
+
+        <li> <NavLink to={'/dashboard'}>DashBoard</NavLink> </li>
 
         {
             user ? <li > <Link to="/login" onClick={handleLogOut}> SignOut</Link></li>
@@ -40,7 +40,7 @@ const NavBar = () => {
                         {navMenuItems}
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">Finance Community</a>
+                <a className="btn btn-ghost normal-case text-xl">Community</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">

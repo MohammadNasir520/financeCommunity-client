@@ -1,22 +1,29 @@
 import React, { useContext, useState } from 'react';
+import { imageUpload } from '../../Api/ImageUpload';
 import { AuthContext } from '../../Context/AuthProvider';
+
 
 const SignUp = () => {
 
-    const { createUserbyEmail } = useContext(AuthContext)
+    const { createUserbyEmail, updateUser } = useContext(AuthContext)
 
-    //imagebb key collect from env.local
-    const imageBBHostKey = process.env.REACT_APP_ImageBBhost_key;
-    console.log(imageBBHostKey)
+
 
     // onchange image state
-    const [stateImage, setImage] = useState([])
-    const handleImage = event => {
-        setImage(event.target.files)
+    const [imageUrl, setImage] = useState([])
+
+    const handleImage = image => {
+
+        console.log(image);
+        imageUpload(image)
+            .then(url => {
+                console.log(url);
+                setImage(url)
+            })
     }
 
 
-    const handleSignUp = event => {
+    const handleSubmit = event => {
         event.preventDefault();
 
         const form = event.target;
@@ -25,62 +32,80 @@ const SignUp = () => {
         const batch = form.batch.value;
         const password = form.password.value;
 
-        const image = stateImage[0]
+        // const formData = new FormData()
+        // formData.append("image", image)
+        // const url = `https://api.imgbb.com/1/upload?key=${imageBBHostKey}`
+        // fetch(url, {
+        //     method: 'POST',
+        //     body: formData
+        // })
+        //     .then(res => res.json())
+        //     .then(imgData => {
+        //         if (imgData.success) {
 
 
-        // imageBB form data and image append and post to imagebb
-        const formData = new FormData()
-        formData.append("image", image)
-        const url = `https://api.imgbb.com/1/upload?key=${imageBBHostKey}`
-        fetch(url, {
+        //user post to mongodb
+        const student = {
+            name,
+            email,
+            batch,
+            imageUrl: imageUrl,
+            password,
+            'role': 'user'
+        }
+        console.log(student)
+
+        // // imageBB form data and image append and post to imagebb
+        fetch(`http://localhost:5000/students`, {
             method: 'POST',
-            body: formData
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(student)
         })
             .then(res => res.json())
-            .then(imgData => {
-                if (imgData.success) {
+            .then(data => {
+                console.log(data)
+                if (data.acknowledged) {
 
 
-                    //user post to mongodb
-                    const student = {
-                        name,
-                        email,
-                        batch,
-                        imageUrl: imgData.data.url,
-                        password,
-                    }
-                    console.log(student)
-                    fetch(`http://localhost:5000/students`, {
-                        method: 'POST',
-                        headers: {
-                            'content-type': 'application/json'
-                        },
-                        body: JSON.stringify(student)
-                    })
-                        .then(res => res.json())
-                        .then(data => {
-                            console.log(data)
-                            if (data.acknowledged) {
-                                createUserbyEmail(email, password)
-                                    .then(result => {
-                                        const user = result.user;
-                                        console.log(user)
-                                    })
-                                    .catch(error => {
-                                        console.log(error)
-                                    })
-                                form.reset()
+                    // create user by email
+                    createUserbyEmail(email, password)
+                        .then(result => {
+                            const user = result.user;
+                            console.log(user)
+
+
+                            const profile = {
+                                displayName: name,
+                                photoURL: imageUrl,
                             }
+
+
+
+                            // update user name and photoUrl
+                            updateUser(profile)
+                                .then(() => {
+
+                                })
+                                .catch(error => { console.log(error); })
+
                         })
-
-
+                        .catch(error => {
+                            console.log(error)
+                        })
+                    form.reset()
                 }
-
             })
-        console.log(email, batch, password, image)
 
 
     }
+
+
+
+
+
+
     return (
         <div>
             <div className="hero min-h-screen bg-stone-200">
@@ -92,7 +117,7 @@ const SignUp = () => {
 
 
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                        <form onSubmit={handleSignUp}>
+                        <form onSubmit={handleSubmit} >
                             <div className="card-body bg-slate-300 gap-0">
 
                                 <div className="form-control">
@@ -115,7 +140,13 @@ const SignUp = () => {
                                     <label className="label">
                                         <span className="label-text">Your Photo</span>
                                     </label>
-                                    <input name='file' type="file" required className=' bg-white w-full' onChange={handleImage} />
+                                    <input
+
+                                        onChange={(event) => handleImage(event.target.files[0])}
+                                        name='file'
+                                        type="file"
+                                        required
+                                        className=' bg-white w-full' />
                                 </div>
 
                                 <div>
@@ -153,9 +184,9 @@ const SignUp = () => {
                                     <label className="label">
                                         <span className="label-text">Password</span>
                                     </label>
-                                    <input name='password' type="text" placeholder="password" requi className='px-4' ed />
+                                    <input name='password' type="password" placeholder="password" required className='px-4' ed />
                                     <label className="label">
-                                        <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                        {/* <a href="#" className="label-text-alt link link-hover">Forgot password?</a> */}
                                     </label>
                                 </div>
 
