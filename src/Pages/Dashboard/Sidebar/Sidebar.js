@@ -84,7 +84,7 @@ const Sidebar = () => {
 
 
 
-                                role === 'user' && <UserMenu></UserMenu>
+                                role === 'user' || role === 'requested' && <UserMenu></UserMenu>
 
                             }
                             {

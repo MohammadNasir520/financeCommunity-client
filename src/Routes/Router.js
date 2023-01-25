@@ -8,6 +8,7 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import StudentProfile from "../Pages/StudentProfile/StudentProfile";
 import SignUp from "../Shared/SignUp/SignUp";
+import AdminRoutes from "./AdminRoutes";
 
 export const router = createBrowserRouter([
     {
@@ -57,7 +58,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'allUsers',
-                element: <AllUsers></AllUsers>
+                element: <AdminRoutes> <AllUsers></AllUsers></AdminRoutes>
             },
         ]
 

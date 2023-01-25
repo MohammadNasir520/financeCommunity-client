@@ -60,7 +60,7 @@ const Register = () => {
             {
                 studentInformation?.role === 'requested' ?
                     <div className='h-screen flex text-2xl font-bold items-center justify-center'>
-                        <p>Registration on processing. Please wait for Approval</p>
+                        <p>Your student Registration on processing. Please wait for Approval</p>
                     </div>
 
                     :
