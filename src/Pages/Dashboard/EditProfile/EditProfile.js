@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
 
 import { imageUpload } from '../../../Api/ImageUpload';
 import { getSingleStudentByEmail, updateUserByEmail } from '../../../Api/StudentsApi';
@@ -50,13 +51,17 @@ const EditProfile = () => {
         updateUserByEmail(studentInformations)
             .then(data => {
                 console.log(data);
+                toast.success('Your Information updated Successfully')
                 fetchStudentInformation()
             })
             .catch(error => { console.log(error); })
 
     }
     return (
-        <div>
+        <div className='mt-5'>
+
+            <h1 className="text-xl text-center my-7 font-bold text-black capitalize dark:text-white">Hei... <span className='text-emerald-400'>{user?.displayName}</span>   Update Your Information</h1>
+
             <Form
                 studentInformation={studentInformation}
                 setStudentInformation={setStudentInformation}

@@ -4,10 +4,10 @@ const Form = ({ studentInformation, setStudentInformation, handleSubmit, handleI
 
     return (
         <div>
-            <section className="max-w-4xl p-6  mx-auto bg-cyan-700 rounded-md shadow-md dark:bg-gray-800 mt-20">
-                <h1 className="text-xl text-center font-bold text-white capitalize dark:text-white">Register as a Finance Family Member</h1>
+            <section className="max-w-4xl px-6  mx-auto bg-cyan-700 rounded-md shadow-md dark:bg-gray-800 mt-4 p-6">
+                <p className='text-xl text-center mb-3 font-bold text-white  capitalize dark:text-white'>Please Input Your Information Carefully</p>
                 <form onSubmit={handleSubmit}>
-                    <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+                    <div className="grid grid-cols-1 gap-6  sm:grid-cols-2">
                         <div>
                             <label className="text-white dark:text-gray-200" for="username">Your Official Name</label>
                             <input
@@ -57,7 +57,6 @@ const Form = ({ studentInformation, setStudentInformation, handleSubmit, handleI
                                     defaultValue={studentInformation?.level}
                                     onChange={(event) => setStudentInformation({ ...studentInformation, level: event.target.value })}
                                     className="w-40   text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                                    <option disabled selected> {studentInformation?.level ? <p>{studentInformation?.level}</p> : 'select Your level'}</option>
                                     <option>Level 1</option>
                                     <option>Level 2</option>
                                     <option>Level 3</option>
