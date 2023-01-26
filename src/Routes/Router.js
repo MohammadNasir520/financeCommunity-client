@@ -3,6 +3,7 @@ import DashBoardLayout from "../Layout/DashBoardLayout";
 import Main from "../Layout/Main";
 import BatchStudents from "../Pages/AllStudents/BatchStudents";
 import AllUsers from "../Pages/Dashboard/Admin/AllUsers.js/AllUsers";
+import Welcome from "../Pages/Dashboard/Welcome/Welcome";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
@@ -52,6 +53,10 @@ export const router = createBrowserRouter([
         path: '/dashboard',
         element: <DashBoardLayout></DashBoardLayout>,
         children: [
+            {
+                path: '',
+                element: <Welcome />
+            },
             {
                 path: 'register',
                 element: <Register></Register>

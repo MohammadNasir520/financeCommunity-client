@@ -17,15 +17,15 @@ export const getSingleStudentByEmail = async (email) => {
 }
 
 
-// register student
-export const registrationRequest = async studentInformation => {
+// update and register student
+export const updateUserByEmail = async studentInformation => {
 
     const email = studentInformation.email;
 
 
     delete studentInformation.email;
     delete studentInformation._id;
-    const studentInformations = { ...studentInformation, role: 'requested' }
+
     console.log(studentInformation);
     const url = `${process.env.REACT_APP_Base_url}/student/${email}`
     const response = await fetch(url, {
@@ -33,11 +33,12 @@ export const registrationRequest = async studentInformation => {
         headers: {
             'content-type': 'application/json'
         },
-        body: JSON.stringify(studentInformations)
+        body: JSON.stringify(studentInformation)
     })
     const data = await response.json()
     return data;
 }
+
 
 
 // get role

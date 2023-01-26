@@ -89,6 +89,13 @@ const Sidebar = () => {
 
                             }
                             {
+
+
+
+                                role === 'requested' && <UserMenu></UserMenu>
+
+                            }
+                            {
                                 role === 'admin' && <AdminNavLink></AdminNavLink>
                             }
                         </nav>

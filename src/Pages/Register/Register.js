@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { imageUpload } from '../../Api/ImageUpload';
-import { getSingleStudentByEmail, registrationRequest } from '../../Api/StudentsApi';
+import { getSingleStudentByEmail, updateUserByEmail } from '../../Api/StudentsApi';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const Register = () => {
@@ -46,7 +46,9 @@ const Register = () => {
     const handleSubmit = (event) => {
         event.preventDefault()
         console.log(studentInformation);
-        registrationRequest(studentInformation)
+
+        const studentInformations = { ...studentInformation, role: 'requested' }
+        updateUserByEmail(studentInformations)
             .then(data => {
                 console.log(data);
                 fetchStudentInformation()
@@ -168,6 +170,22 @@ const Register = () => {
                                         onChange={(event) => setStudentInformation({ ...studentInformation, collage: event.target.value })}
                                         id="collage" type="text" className="block w-full py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                 </div>
+
+
+                                <div>
+                                    <label className="text-white dark:text-gray-200" for="">Your school</label>
+                                    <input
+                                        defaultValue={studentInformation?.school}
+                                        onChange={(event) => setStudentInformation({ ...studentInformation, school: event.target.value })}
+                                        id="school" type="text" className="block w-full py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                </div>
+                                <div>
+                                    <label className="text-white dark:text-gray-200" for="">Mess/Hall</label>
+                                    <input
+                                        defaultValue={studentInformation?.residence}
+                                        onChange={(event) => setStudentInformation({ ...studentInformation, residence: event.target.value })}
+                                        id="residence" type="text" className="block w-full py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                </div>
                                 <div>
                                     <label className="text-white dark:text-gray-200" for="">Write about yourself</label>
                                     <textarea
@@ -175,6 +193,10 @@ const Register = () => {
                                         onChange={(event) => setStudentInformation({ ...studentInformation, about: event.target.value })}
                                         id="about" type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"></textarea>
                                 </div>
+
+                                {/* school */}
+
+
 
 
 

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
-import { deleteUserById, getAllStudents } from '../../../../Api/StudentsApi';
+import { deleteUserById, getAllStudents, updateUserByEmail } from '../../../../Api/StudentsApi';
 
 const AllUsers = () => {
 
@@ -34,7 +34,19 @@ const AllUsers = () => {
                 toast.error(error?.message)
             })
     }
-
+    const handleApprove = (user) => {
+        console.log(user);
+        const studentInformation = {
+            email: user.email,
+            role: 'student'
+        }
+        updateUserByEmail(studentInformation)
+            .then(data => {
+                console.log(data);
+                toast.success(`${user.name}'s student request accepted`)
+                fetchAllUsers()
+            })
+    }
     return (
         // <!-- component -->
         <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
@@ -94,9 +106,14 @@ const AllUsers = () => {
                                         >
                                             {user.role}
                                         </span>
+
+
+
+                                        {/* approve button */}
                                         {
                                             user.role === 'requested' &&
                                             <span
+                                                onClick={() => handleApprove(user)}
                                                 class=" cursor-pointer inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-1 text-xs font-bold text-green-500"
                                             >
                                                 approve
