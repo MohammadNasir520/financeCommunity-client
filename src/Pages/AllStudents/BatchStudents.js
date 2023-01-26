@@ -37,8 +37,9 @@ const BatchStudents = () => {
                                     {students.map(student => <div
                                         class="flex flex-col items-center justify-center w-full max-w-xs mx-auto"
                                     >
-                                        <div class="w-full h-72 bg-gray-300 bg-center  rounded-lg shadow-md   bg-no-repeat bg-cover " style={{ backgroundImage: `url(${student.imageUrl})` }}>
+                                        <div class="w-full h-72 bg-center object-center rounded-lg shadow-md   bg-no-repeat bg-cover " style={{ backgroundImage: `url(${student.imageUrl})` }}>
                                             hello
+
                                         </div>
 
                                         <div class="w-56 -mt-10 overflow-hidden bg-white rounded-lg shadow-lg md:w-64 dark:bg-gray-800">

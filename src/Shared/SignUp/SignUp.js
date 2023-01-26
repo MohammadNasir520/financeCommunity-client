@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { imageUpload } from '../../Api/ImageUpload';
 import SmallSpinner from '../../Components/Spinner/SmallSpinner';
 import { AuthContext } from '../../Context/AuthProvider';
@@ -9,6 +10,8 @@ const SignUp = () => {
     const { createUserbyEmail, updateUser, loading, setLoading } = useContext(AuthContext)
 
     console.log(loading);
+
+    const navigate = useNavigate()
 
     // onchange image state
     const [imageUrl, setImage] = useState([])
@@ -91,11 +94,13 @@ const SignUp = () => {
                                 })
                                 .catch(error => { console.log(error); })
 
+
                         })
                         .catch(error => {
                             console.log(error)
                         })
                     form.reset()
+                    navigate('/')
 
                 }
             })

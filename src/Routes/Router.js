@@ -3,6 +3,7 @@ import DashBoardLayout from "../Layout/DashBoardLayout";
 import Main from "../Layout/Main";
 import BatchStudents from "../Pages/AllStudents/BatchStudents";
 import AllUsers from "../Pages/Dashboard/Admin/AllUsers.js/AllUsers";
+import EditProfile from "../Pages/Dashboard/EditProfile/EditProfile";
 import Welcome from "../Pages/Dashboard/Welcome/Welcome";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
@@ -64,6 +65,10 @@ export const router = createBrowserRouter([
             {
                 path: 'allUsers',
                 element: <AdminRoutes> <AllUsers></AllUsers></AdminRoutes>
+            },
+            {
+                path: '/dashboard/:email',
+                element: <EditProfile></EditProfile>
             },
         ]
 
