@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchStudents = createAsyncThunk("posts/fetchUsers", async () => {
-    const students = await fetch(`http://localhost:5000/students`)
+    const students = await fetch(`${process.env.REACT_APP_Base_url}/students`)
     const res = await students.json()
     return res;
 })

@@ -36,12 +36,12 @@ export const router = createBrowserRouter([
 
             {
                 path: '/students/:batch',
-                loader: ({ params }) => fetch(`http://localhost:5000/students?batch=${params.batch}`),
+                loader: ({ params }) => fetch(`${process.env.REACT_APP_Base_url}/students?batch=${params.batch}`),
                 element: <BatchStudents></BatchStudents>
             },
             {
                 path: '/studentProfile/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/studentProfile/${params.id}`),
+                loader: ({ params }) => fetch(`${process.env.REACT_APP_Base_url}/studentProfile/${params.id}`),
                 element: <StudentProfile></StudentProfile>
             }
         ]

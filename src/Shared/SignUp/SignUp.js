@@ -57,7 +57,7 @@ const SignUp = () => {
         console.log(student)
 
         // // imageBB form data and image append and post to imagebb
-        fetch(`http://localhost:5000/students`, {
+        fetch(`${process.env.REACT_APP_Base_url}/students`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

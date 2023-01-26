@@ -32,7 +32,7 @@ const AdminRoutes = ({ children }) => {
     }
     else {
         console.log('not athoriged');
-        toast.error('You have no authorization to go there');
+
         <Navigate to={'/'}></Navigate>
     }
 

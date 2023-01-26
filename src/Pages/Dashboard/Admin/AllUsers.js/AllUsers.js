@@ -73,7 +73,7 @@ const AllUsers = () => {
                                 <th class="flex gap-3 px-6 py-4 font-normal text-gray-900">
                                     <div
 
-                                        class="relative h-10 w-10">
+                                        class="h-10 w-10">
                                         <img
                                             class="h-full w-full rounded-full object-cover object-center"
                                             src={user.imageUrl}
