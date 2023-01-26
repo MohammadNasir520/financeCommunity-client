@@ -11,7 +11,7 @@ const Register = () => {
     const email = user?.email;
     console.log(email);
 
-    const [studentInformation, setStudentInformation] = useState({ role: "requested", email })
+    const [studentInformation, setStudentInformation] = useState({ role: "requested", email: email })
     console.log(studentInformation);
 
 
@@ -85,7 +85,7 @@ const Register = () => {
                                     <input
                                         readOnly
                                         defaultValue={studentInformation?.email}
-                                        onSubmit={(event) => setStudentInformation({ ...studentInformation, email: event.target.value })}
+                                        // onSubmit={(event) => setStudentInformation({ ...studentInformation, email: event.target.value })}
                                         id="email" type="email" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                 </div>
 

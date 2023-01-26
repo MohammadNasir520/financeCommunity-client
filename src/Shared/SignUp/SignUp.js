@@ -1,13 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { imageUpload } from '../../Api/ImageUpload';
+import SmallSpinner from '../../Components/Spinner/SmallSpinner';
 import { AuthContext } from '../../Context/AuthProvider';
 
 
 const SignUp = () => {
 
-    const { createUserbyEmail, updateUser } = useContext(AuthContext)
+    const { createUserbyEmail, updateUser, loading, setLoading } = useContext(AuthContext)
 
-
+    console.log(loading);
 
     // onchange image state
     const [imageUrl, setImage] = useState([])
@@ -86,7 +87,7 @@ const SignUp = () => {
                             // update user name and photoUrl
                             updateUser(profile)
                                 .then(() => {
-
+                                    setLoading(false)
                                 })
                                 .catch(error => { console.log(error); })
 
@@ -95,6 +96,7 @@ const SignUp = () => {
                             console.log(error)
                         })
                     form.reset()
+
                 }
             })
 
@@ -192,7 +194,7 @@ const SignUp = () => {
 
 
                                 <div className="form-control mt-6">
-                                    <button type='submit' className="btn btn-primary">SingUp</button>
+                                    <button type='submit' className="btn btn-primary"> {loading ? <SmallSpinner></SmallSpinner> : `SingUp`}</button>
                                 </div>
                             </div>
 

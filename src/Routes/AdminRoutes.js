@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useContext } from 'react';
+import { toast } from 'react-hot-toast';
 import { Navigate } from 'react-router-dom';
 import { getStudentRole } from '../Api/StudentsApi';
 import { AuthContext } from '../Context/AuthProvider';
@@ -31,6 +32,7 @@ const AdminRoutes = ({ children }) => {
     }
     else {
         console.log('not athoriged');
+        toast.error('You have no authorization to go there');
         <Navigate to={'/'}></Navigate>
     }
 

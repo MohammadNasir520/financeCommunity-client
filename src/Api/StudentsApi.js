@@ -1,3 +1,4 @@
+import { async } from "@firebase/util"
 
 
 // get all students
@@ -45,4 +46,19 @@ export const getStudentRole = async (email) => {
     const response = await fetch(`http://localhost:5000/student/${email}`)
     const data = await response.json();
     return data.role;
+}
+
+
+// delete user by id 
+export const deleteUserById = async id => {
+    const url = `${process.env.REACT_APP_Base_url}/student/${id}`
+    const response = await fetch(url, {
+        method: 'DELETE',
+        headers: {
+            'content-type': 'application/json'
+        },
+
+    })
+    const data = await response.json()
+    return data;
 }
