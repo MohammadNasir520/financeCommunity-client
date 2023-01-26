@@ -41,7 +41,7 @@ export const router = createBrowserRouter([
                 element: <BatchStudents></BatchStudents>
             },
             {
-                path: '/studentProfile/:id',
+                path: '/profile/:id',
                 loader: ({ params }) => fetch(`${process.env.REACT_APP_Base_url}/studentProfile/${params.id}`),
                 element: <StudentProfile></StudentProfile>
             }

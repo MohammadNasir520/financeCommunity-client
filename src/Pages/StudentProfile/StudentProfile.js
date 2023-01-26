@@ -1,8 +1,14 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { useContext } from 'react';
 import { PhotoView } from 'react-photo-view';
 import { useLoaderData } from 'react-router-dom';
+import { getSingleStudentByEmail } from '../../Api/StudentsApi';
+import { AuthContext } from '../../Context/AuthProvider';
 
 const StudentProfile = () => {
+
     const student = useLoaderData()
     console.log(student);
     return (
