@@ -17,6 +17,7 @@ const NavBar = () => {
 
 
         <li> <NavLink to={'/dashboard'}>DashBoard</NavLink> </li>
+        <li> <NavLink to={'/check'}> check</NavLink> </li>
 
         {
             user ? <li > <Link to="/login" onClick={handleLogOut}> SignOut</Link></li>
@@ -24,6 +25,7 @@ const NavBar = () => {
                 <>
                     <li> <NavLink to={'/login'}>Login</NavLink> </li>
                     <li> <NavLink to={'/SignUp'}> SignUp</NavLink> </li>
+
                 </>
         }
 

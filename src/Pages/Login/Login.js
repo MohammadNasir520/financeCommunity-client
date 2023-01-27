@@ -1,13 +1,18 @@
 import React, { useContext } from 'react';
 import { toast } from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import SmallSpinner from '../../Components/Spinner/SmallSpinner';
 import { AuthContext } from '../../Context/AuthProvider';
 
 
 const Login = () => {
-    const { loginByEmail } = useContext(AuthContext)
+    const { loginByEmail, loading } = useContext(AuthContext)
 
-    const navigate = useNavigate()
+
+    const navigate = useNavigate();
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/'
+    console.log(from);
 
     const handleLogin = event => {
         event.preventDefault();
@@ -20,7 +25,7 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 toast.success('login successful')
-                navigate('/')
+                navigate(from, { replace: true })
             })
             .catch(error => {
                 console.log(error)

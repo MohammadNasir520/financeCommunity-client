@@ -13,12 +13,11 @@ import { PhotoView } from 'react-photo-view';
 
 
 
-const Sidebar = () => {
+const Sidebar = ({ role }) => {
 
-    const { user, logOut } = useContext(AuthContext)
+    const { user, logOut, } = useContext(AuthContext)
 
-    const [role, setRole] = useState('')
-    console.log(role);
+
     const [active, setActive] = useState(false)
 
     console.log(active);
@@ -27,14 +26,6 @@ const Sidebar = () => {
     }
 
 
-    // fetching role
-    useEffect(() => {
-        getStudentRole(user?.email)
-            .then(data => {
-
-                setRole(data)
-            })
-    }, [user?.email])
 
 
 

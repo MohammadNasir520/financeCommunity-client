@@ -18,7 +18,7 @@ const StudentProfile = () => {
 
 
 
-                <div className=" flex items-center h-auto lg:h-screen flex-wrap mx-auto my-32 lg:my-0 mx-8">
+                <div className=" flex items-center h-auto lg:min-h-screen flex-wrap mx-auto my-32 lg:my-0 mx-8">
 
 
                     {/* --Img Col-- */}

@@ -33,7 +33,7 @@ const AdminRoutes = ({ children }) => {
     else {
         console.log('not athoriged');
 
-        <Navigate to={'/'}></Navigate>
+        return <Navigate to={'/'}></Navigate>
     }
 
 };

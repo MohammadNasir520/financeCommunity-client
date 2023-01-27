@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import Check from "../Components/Check";
 import DashBoardLayout from "../Layout/DashBoardLayout";
 import Main from "../Layout/Main";
 import BatchStudents from "../Pages/AllStudents/BatchStudents";
@@ -11,6 +12,7 @@ import Register from "../Pages/Register/Register";
 import StudentProfile from "../Pages/StudentProfile/StudentProfile";
 import SignUp from "../Shared/SignUp/SignUp";
 import AdminRoutes from "./AdminRoutes";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -44,6 +46,10 @@ export const router = createBrowserRouter([
                 path: '/profile/:id',
                 loader: ({ params }) => fetch(`${process.env.REACT_APP_Base_url}/studentProfile/${params.id}`),
                 element: <StudentProfile></StudentProfile>
+            },
+            {
+                path: '/check',
+                element: <PrivateRoute> <Check></Check></PrivateRoute>
             }
         ]
     },
@@ -52,24 +58,29 @@ export const router = createBrowserRouter([
     // dshboard layout 
     {
         path: '/dashboard',
-        element: <DashBoardLayout></DashBoardLayout>,
+        element: <PrivateRoute><DashBoardLayout></DashBoardLayout></PrivateRoute>,
         children: [
             {
                 path: '',
-                element: <Welcome />
+                element: <PrivateRoute><Welcome /></PrivateRoute>
             },
             {
                 path: 'register',
-                element: <Register></Register>
+                element: <PrivateRoute> <Register></Register></PrivateRoute>
             },
             {
                 path: 'allUsers',
-                element: <AdminRoutes> <AllUsers></AllUsers></AdminRoutes>
+                element: <AllUsers></AllUsers>
             },
             {
                 path: '/dashboard/:email',
-                element: <EditProfile></EditProfile>
+                element: <PrivateRoute> <EditProfile></EditProfile></PrivateRoute>
             },
+            {
+                path: 'profile/:id',
+                loader: ({ params }) => fetch(`${process.env.REACT_APP_Base_url}/studentProfile/${params.id}`),
+                element: <PrivateRoute> <StudentProfile></StudentProfile></PrivateRoute>
+            }
         ]
 
     },
