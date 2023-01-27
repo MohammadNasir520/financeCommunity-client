@@ -32,6 +32,7 @@ const DashBoardLayout = () => {
     console.log(user);
     console.log(loading);
     const [role, setRole] = useState(null)
+    console.log(role);
     // const [loading, setLoading] = useState(true)
     useEffect(() => {
         // setLoading(true)
@@ -39,7 +40,7 @@ const DashBoardLayout = () => {
             setRole(data)
             setLoading(false)
         })
-    }, [user.email])
+    }, [user.email, setLoading])
 
     if (loading) {
         return <SmallSpinner></SmallSpinner>

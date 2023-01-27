@@ -9,12 +9,14 @@ import UserMenu from '../User/UserMenu';
 import { Link, NavLink } from 'react-router-dom';
 import AdminNavLink from '../Admin/AdminNavLink';
 import { PhotoView } from 'react-photo-view';
+import StudentsMenu from '../Students/StudentsMenu';
 
 
 
 
 const Sidebar = ({ role }) => {
 
+    console.log(role);
     const { user, logOut, } = useContext(AuthContext)
 
 
@@ -99,6 +101,13 @@ const Sidebar = ({ role }) => {
 
 
                                 role === 'requested' && <UserMenu></UserMenu>
+
+                            }
+                            {
+
+
+
+                                role === 'student' && <StudentsMenu></StudentsMenu>
 
                             }
                             {

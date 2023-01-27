@@ -50,9 +50,10 @@ const Form = ({ studentInformation, setStudentInformation, handleSubmit, handleI
                                 id="address" type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                         </div>
                         <div className='flex mt-5 gap-4'>
-                            <div className='w-40'>
-                                <label className="text-white  dark:text-gray-200" for="">Your Current Level</label>
+                            <div className='lg:w-40'>
+                                <label className="text-white  dark:text-gray-200" for="level">Your Current Level</label>
                                 <select
+                                    id='level'
                                     required
                                     defaultValue={studentInformation?.level}
                                     onChange={(event) => setStudentInformation({ ...studentInformation, level: event.target.value })}

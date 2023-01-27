@@ -61,30 +61,47 @@ const Register = () => {
         <div>
 
             {
-                studentInformation?.role ?
-                    <>
-                        {
-                            studentInformation?.role === 'requested' &&
-                            <div className='h-screen flex text-2xl font-bold items-center justify-center'>
-                                <p>Your student Registration on processing. Please wait for Approval</p>
+                studentInformation?.role &&
+                <>
+
+                    {
+                        studentInformation?.role === 'user' ?
+                            <div>
+                                <h1 className="text-xl text-center font-bold text-black capitalize dark:text-white">Register as a Finance Family Member</h1>
+                                <Form
+
+                                    studentInformation={studentInformation}
+                                    setStudentInformation={setStudentInformation}
+                                    fetchStudentInformation={fetchStudentInformation}
+                                    handleSubmit={handleSubmit}
+                                    handleImage={handleImage}
+                                ></Form>
+
                             </div>
 
 
-                        }
-                    </>
-                    :
-                    <div>
-                        <h1 className="text-xl text-center font-bold text-black capitalize dark:text-white">Register as a Finance Family Member</h1>
-                        <Form
+                            :
+                            <>
+                                <>
+                                    {
+                                        studentInformation.role === 'requested' ?
+                                            <div className='h-screen flex text-2xl font-bold items-center justify-center'>
+                                                <p>Your student Registration on processing. Please wait for Approval</p>
+                                            </div>
+                                            :
+                                            <div className='h-screen flex text-2xl font-bold items-center justify-center'>
+                                                <p>Congratulations {user.displayName}. Now yor are certified student</p>
+                                            </div>
+                                    }
 
-                            studentInformation={studentInformation}
-                            setStudentInformation={setStudentInformation}
-                            fetchStudentInformation={fetchStudentInformation}
-                            handleSubmit={handleSubmit}
-                            handleImage={handleImage}
-                        ></Form>
+                                </>
+                            </>
+                    }
 
-                    </div>
+
+                </>
+
+
 
 
 

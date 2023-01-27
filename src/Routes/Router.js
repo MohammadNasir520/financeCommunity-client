@@ -62,24 +62,24 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: '',
-                element: <PrivateRoute><Welcome /></PrivateRoute>
+                element: <Welcome />
             },
             {
                 path: 'register',
-                element: <PrivateRoute> <Register></Register></PrivateRoute>
+                element: <Register></Register>
             },
             {
                 path: 'allUsers',
-                element: <AllUsers></AllUsers>
+                element: <AdminRoutes> <AllUsers></AllUsers></AdminRoutes>
             },
             {
                 path: '/dashboard/:email',
-                element: <PrivateRoute> <EditProfile></EditProfile></PrivateRoute>
+                element: <EditProfile></EditProfile>
             },
             {
                 path: 'profile/:id',
                 loader: ({ params }) => fetch(`${process.env.REACT_APP_Base_url}/studentProfile/${params.id}`),
-                element: <PrivateRoute> <StudentProfile></StudentProfile></PrivateRoute>
+                element: <StudentProfile></StudentProfile>
             }
         ]
 
